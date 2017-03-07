@@ -1,0 +1,35 @@
+[
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "id": "package-settings",
+                "mnemonic": "P",
+                "children":
+                [
+                    {
+                    "caption": "OCN_run_script",
+                    "children":
+                        [
+                            {
+                                "caption": "Setting Prompt – User",
+                                "command": "edit_prompt_user",
+                            },
+                            {
+                                "caption": "Setting Script – User",
+                                "command": "edit_script_user",
+
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
+                
+                
