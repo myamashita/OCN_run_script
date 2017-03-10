@@ -58,19 +58,6 @@ class TerminalSelector():
         return default
 
 class TerminalCommand():
-    def get_path(self, paths):
-        if paths:
-            return paths[0]
-        # DEV: On ST3, there is always an active view.
-        #   Be sure to check that it's a file with a path (not temporary view)
-        elif self.window.active_view() and self.window.active_view().file_name():
-            return self.window.active_view().file_name()
-        elif self.window.folders():
-            return self.window.folders()[0]
-        else:
-            sublime.error_message('Terminal: No place to open terminal to')
-            return False
-
     def run_script(self, dir_, parameters):
         try:
             for k, v in enumerate(parameters):
@@ -113,21 +100,13 @@ class TerminalCommand():
 
 class OpenScriptCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def run(self, paths=[], script=None):
-        path = self.get_path(paths)
-
-        if not path:
-            return
-
-        if os.path.isfile(path):
-            path = os.path.dirname(path)
-
+        path = "C:\\Users\\aojq\\Documents\\sublime_portable\Data\\Packages\\OCN_run_script"
         self.run_script(path, script)
 
 class EditPromptUserCommand(sublime_plugin.WindowCommand):
     def run(self):
         """Open `Packages/User/OCN_run_script.sublime-settings` for custom definitions"""
         filepath = os.path.join(sublime.packages_path(), 'User\OCN_run_script.sublime-settings')
-        print(filepath)
         if not os.path.isfile(filepath):
             with open(filepath, 'w') as f:
                 f.write(DEFAULT_PROMPT)
@@ -141,7 +120,6 @@ class EditScriptUserCommand(sublime_plugin.WindowCommand):
     def run(self):
         """Open `Packages/User/Default.sublime-commands` for custom definitions"""
         filepath = os.path.join(sublime.packages_path(), 'User\OCN_run_script.sublime-commands')
-        print(filepath)
         if not os.path.isfile(filepath):
             with open(filepath, 'w') as f:
                 f.write(DEFAULT_CONTENT)
