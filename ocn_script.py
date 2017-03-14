@@ -100,7 +100,7 @@ class TerminalCommand():
 
 class OpenScriptCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def run(self, paths=[], script=None):
-        path = "C:\\Users\\aojq\\Documents\\sublime_portable\Data\\Packages\\OCN_run_script"
+        path = sublime.packages_path()
         self.run_script(path, script)
 
 class EditPromptUserCommand(sublime_plugin.WindowCommand):
